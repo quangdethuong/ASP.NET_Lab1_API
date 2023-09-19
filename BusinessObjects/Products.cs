@@ -17,6 +17,8 @@ namespace BusinessObjects
         public int CategoryId { get; set; }
         public int UnitsInStock { get; set; }
         public decimal UnitPrice { get; set; }
+
+
         public virtual Category Category { get; set; }
     }
 }

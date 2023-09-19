@@ -1,4 +1,5 @@
-﻿using BusinessObjects;
+﻿
+using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
 using Repositories;
 using System.Collections;
@@ -22,7 +23,7 @@ namespace ProductManagementServerAPI.Controllers
         public IActionResult PostProduct(Products p)
         {
             productsRepository.SaveProduct(p);
-            return NoContent();
+            return Ok(p);
         }
 
         // PUT api/<ProductsControllers>/5
@@ -46,14 +47,14 @@ namespace ProductManagementServerAPI.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPost("{id}")]
         public IActionResult UpdateProduct(int id, Products p)
         {
             var pTmp = productsRepository.GetProductById(id);
-            if (p == null)
+            if (pTmp == null)
                 return NotFound();
             productsRepository.UpdateProduct(p);
-            return NoContent();
+            return Ok(p);
         }
     }
 }
